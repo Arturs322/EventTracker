@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using EventTracker.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventTracker.DataAccess;
@@ -12,5 +13,9 @@ public class ApplicationDbContext : IdentityDbContext
 		base.OnModelCreating(modelBuilder);
 	}
 
-	public DbSet<CategoryPrinter> CategoryPrinters { get; set; }
+	public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+	public DbSet<Event> Events { get; set; }
+	public DbSet<Category> Categories { get; set; }
+	public DbSet<Company> Companies { get; set; }
+	public DbSet<Country> Countries { get; set; }
 }
