@@ -2,8 +2,8 @@
 
 namespace EventTracker.DataAccess.Repository.IRepository
 {
-	public interface IEventRepository : IRepository<Event>
+	public interface ICountryRepository : IRepository<Country>
 	{
-		void Update(Event obj);
+		void Update(Country obj);
 	}
 }

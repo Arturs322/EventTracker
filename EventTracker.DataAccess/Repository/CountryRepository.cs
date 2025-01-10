@@ -3,19 +3,19 @@ using EventTracker.Models;
 
 namespace EventTracker.DataAccess.Repository
 {
-	public class EventRepository : Repository<Event>, IEventRepository
+	public class CountryRepository : Repository<Country>, ICountryRepository
 	{
 		private ApplicationDbContext _db;
 
-		public EventRepository(ApplicationDbContext db) : base(db)
+		public CountryRepository(ApplicationDbContext db) : base(db)
 		{
 			_db = db;
 		}
 
 
-		public void Update(Event obj)
+		public void Update(Country obj)
 		{
-			_db.Events.Update(obj);
+			_db.Countries.Update(obj);
 		}
 	}
 }
