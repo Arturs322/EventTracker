@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using EventTracker.Application.Dto;
+using EventTracker.Application.ServiceContracts.Category;
 using EventTracker.DataAccess.Repository.IRepository;
 using Microsoft.Extensions.Logging;
 
 namespace EventTracker.Infrastructure.Services.Category
 {
-	public class CategoryService
+	public class CategoryService : ICategoryService
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IMapper _mapper;
@@ -18,6 +19,7 @@ namespace EventTracker.Infrastructure.Services.Category
 			_logger = logger;
 		}
 
+		/// <inheritdoc />
 		public async Task<CategoryDto> GetCategory(int id)
 		{
 			try
@@ -32,6 +34,7 @@ namespace EventTracker.Infrastructure.Services.Category
 			}
 		}
 
+		/// <inheritdoc />
 		public async Task<IEnumerable<CategoryDto>> GetCategories()
 		{
 			try
@@ -46,6 +49,7 @@ namespace EventTracker.Infrastructure.Services.Category
 			}
 		}
 
+		/// <inheritdoc />
 		public async Task<ServiceResponseDto> CreateCategory(CategoryDto categoryDto)
 		{
 			try
@@ -67,6 +71,7 @@ namespace EventTracker.Infrastructure.Services.Category
 			}
 		}
 
+		/// <inheritdoc />
 		public async Task<ServiceResponseDto> EditCategory(int id, CategoryDto category)
 		{
 			try
@@ -91,6 +96,7 @@ namespace EventTracker.Infrastructure.Services.Category
 			}
 		}
 
+		/// <inheritdoc />
 		public async Task<ServiceResponseDto> DeleteCategory(int id)
 		{
 			try
