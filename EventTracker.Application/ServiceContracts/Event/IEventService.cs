@@ -12,7 +12,7 @@ namespace EventTracker.Application.ServiceContracts.Event
 		/// </summary>
 		/// <param name="id">The unique identifier of the event.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains the event details as a <see cref="EventDto"/>.</returns>
-		Task<EventDto> GetEvent(int id);
+		Task<EventDto> GetEvent(int id, CancellationToken cancellation);
 
 		/// <summary>
 		/// Retrieves a collection of events based on optional filters.
@@ -20,28 +20,28 @@ namespace EventTracker.Application.ServiceContracts.Event
 		/// <param name="ageLimit">The optional age limit filter for the events.</param>
 		/// <param name="categoryId">The optional category ID filter for the events.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains a collection of events as <see cref="IEnumerable{EventDto}"/>.</returns>
-		Task<IEnumerable<EventDto>> GetEvents(int? ageLimit, int? categoryId);
+		Task<IEnumerable<EventDto>> GetEvents(CancellationToken cancellation, int? ageLimit = 18, int? categoryId = 1);
 
 		/// <summary>
 		/// Submits a new event to the system.
 		/// </summary>
 		/// <param name="eventObj">The event details to submit.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains a response indicating the success or failure of the operation as a <see cref="ServiceResponseDto"/>.</returns>
-		Task<ServiceResponseDto> SubmitEvent(EventDto eventObj);
+		Task<ServiceResponseDto> SubmitEvent(EventDto eventObj, CancellationToken cancellation);
 
 		/// <summary>
 		/// Edits an existing event in the system.
 		/// </summary>
 		/// <param name="eventObj">The updated event details.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains a response indicating the success or failure of the operation as a <see cref="ServiceResponseDto"/>.</returns>
-		Task<ServiceResponseDto> EditEvent(EventDto eventObj);
+		Task<ServiceResponseDto> EditEvent(int id, EventDto eventObj, CancellationToken cancellation);
 
 		/// <summary>
 		/// Deletes an existing event by its ID.
 		/// </summary>
 		/// <param name="id">The unique identifier of the event to delete.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains a response indicating the success or failure of the operation as a <see cref="ServiceResponseDto"/>.</returns>
-		Task<ServiceResponseDto> DeleteEvent(int id);
+		Task<ServiceResponseDto> DeleteEvent(int id, CancellationToken cancellation);
 
 		/// <summary>
 		/// Performs an action related to an event for a specific user, such as marking interest.
@@ -50,6 +50,6 @@ namespace EventTracker.Application.ServiceContracts.Event
 		/// <param name="userId">The unique identifier of the user performing the action.</param>
 		/// <param name="isInterested">A value indicating whether the user is interested in the event.</param>
 		/// <returns>A task that represents the asynchronous operation. The task result contains a response indicating the success or failure of the operation as a <see cref="ServiceResponseDto"/>.</returns>
-		Task<ServiceResponseDto> EventAction(int eventId, string userId, bool isInterested);
+		Task<ServiceResponseDto> EventAction(int eventId, string userId, bool isInterested, CancellationToken cancellation);
 	}
 }

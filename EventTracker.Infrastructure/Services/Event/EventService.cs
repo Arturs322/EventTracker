@@ -20,7 +20,7 @@ namespace EventTracker.Infrastructure.Services.Event
 		}
 
 		/// <inheritdoc />
-		public async Task<EventDto> GetEvent(int id)
+		public async Task<EventDto> GetEvent(int id, CancellationToken cancellation)
 		{
 			try
 			{
@@ -35,7 +35,7 @@ namespace EventTracker.Infrastructure.Services.Event
 		}
 
 		/// <inheritdoc />
-		public async Task<IEnumerable<EventDto>> GetEvents(int? ageLimit, int? categoryId)
+		public async Task<IEnumerable<EventDto>> GetEvents(CancellationToken cancellation,int? ageLimit = 18, int? categoryId = 1)
 		{
 			try
 			{
@@ -57,7 +57,7 @@ namespace EventTracker.Infrastructure.Services.Event
 		}
 
 		/// <inheritdoc />
-		public async Task<ServiceResponseDto> SubmitEvent(EventDto eventObj)
+		public async Task<ServiceResponseDto> SubmitEvent(EventDto eventObj, CancellationToken cancellation)
 		{
 			try
 			{
@@ -85,11 +85,11 @@ namespace EventTracker.Infrastructure.Services.Event
 		}
 
 		/// <inheritdoc />
-		public async Task<ServiceResponseDto> EditEvent(EventDto eventObj)
+		public async Task<ServiceResponseDto> EditEvent(int id, EventDto eventObj, CancellationToken cancellation)
 		{
 			try
 			{
-				var currentEvent = await _unitOfWork.Event.GetByIdAsync(eventObj.Id);
+				var currentEvent = await _unitOfWork.Event.GetByIdAsync(id);
 
 				if (currentEvent == null)
 				{
@@ -117,7 +117,7 @@ namespace EventTracker.Infrastructure.Services.Event
 		}
 
 		/// <inheritdoc />
-		public async Task<ServiceResponseDto> DeleteEvent(int id)
+		public async Task<ServiceResponseDto> DeleteEvent(int id, CancellationToken cancellation)
 		{
 			try
 			{
@@ -141,7 +141,7 @@ namespace EventTracker.Infrastructure.Services.Event
 
 		//TODO implement relational table event - user interest count
 		/// <inheritdoc />
-		public async Task<ServiceResponseDto> EventAction(int eventId, string userId, bool isInterested)
+		public async Task<ServiceResponseDto> EventAction(int eventId, string userId, bool isInterested, CancellationToken cancellation)
 		{
 			try
 			{

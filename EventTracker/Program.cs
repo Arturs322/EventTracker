@@ -1,10 +1,21 @@
 using EventTracker.DataAccess;
+using EventTracker.DataAccess.Repository.IRepository;
+using EventTracker.DataAccess.Repository;
 using EventTracker.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using EventTracker.Application.ServiceContracts.Event;
+using EventTracker.Infrastructure.Services.Event;
+using EventTracker.Application.ServiceContracts.Category;
+using EventTracker.Infrastructure.Services.Category;
+using EventTracker.Infrastructure.Services.Country;
+using EventTracker.Infrastructure.Services.Company;
+using EventTracker.Application.ServiceContracts.Company;
+using EventTracker.Application.ServiceContracts.Country;
+using EventTracker.Api.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,11 +45,20 @@ builder.Services.AddAuthentication(options =>
 	};
 });
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEventService, EventService>();
+//builder.Services.AddScoped<ICategoryService, CategoryService>();
+//builder.Services.AddScoped<ICountryService, CountryService>();
+//builder.Services.AddScoped<ICompanyService, CompanyService>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.MapEventEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
