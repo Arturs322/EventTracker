@@ -20,7 +20,7 @@ namespace EventTracker.Infrastructure.Services.Category
 		}
 
 		/// <inheritdoc />
-		public async Task<CategoryDto> GetCategory(int id)
+		public async Task<CategoryDto> GetCategory(int id, CancellationToken cancellation)
 		{
 			try
 			{
@@ -35,7 +35,7 @@ namespace EventTracker.Infrastructure.Services.Category
 		}
 
 		/// <inheritdoc />
-		public async Task<IEnumerable<CategoryDto>> GetCategories()
+		public async Task<IEnumerable<CategoryDto>> GetCategories(CancellationToken cancellation)
 		{
 			try
 			{
@@ -50,7 +50,7 @@ namespace EventTracker.Infrastructure.Services.Category
 		}
 
 		/// <inheritdoc />
-		public async Task<ServiceResponseDto> CreateCategory(CategoryDto categoryDto)
+		public async Task<ServiceResponseDto> CreateCategory(CategoryDto categoryDto, CancellationToken cancellation)
 		{
 			try
 			{
@@ -72,7 +72,7 @@ namespace EventTracker.Infrastructure.Services.Category
 		}
 
 		/// <inheritdoc />
-		public async Task<ServiceResponseDto> EditCategory(int id, CategoryDto category)
+		public async Task<ServiceResponseDto> EditCategory(int id, CategoryDto category, CancellationToken cancellation)
 		{
 			try
 			{
@@ -97,7 +97,7 @@ namespace EventTracker.Infrastructure.Services.Category
 		}
 
 		/// <inheritdoc />
-		public async Task<ServiceResponseDto> DeleteCategory(int id)
+		public async Task<ServiceResponseDto> DeleteCategory(int id, CancellationToken cancellation)
 		{
 			try
 			{
