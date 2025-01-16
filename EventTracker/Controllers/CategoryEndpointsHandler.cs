@@ -1,5 +1,4 @@
 ﻿using EventTracker.Application.ServiceContracts.Category;
-using EventTracker.Application.ServiceContracts.Event;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,31 +11,31 @@ namespace EventTracker.Api.Controllers
 			group.MapGet("/getCategory/{categoryId:int}", GetCategory)
 				.WithName(nameof(GetCategory))
 				.Produces(StatusCodes.Status200OK, contentType: "application/json")
-				.ProducesProblem(StatusCodes.Status404NotFound)                
+				.ProducesProblem(StatusCodes.Status404NotFound)
 				.WithMetadata(new SwaggerOperationAttribute(summary: "Gets a specific category by provided ID"));
 
 			group.MapGet("/getCategories", GetCategories)
 				.WithName(nameof(GetCategories))
 				.Produces(StatusCodes.Status200OK, contentType: "application/json")
-				.ProducesProblem(StatusCodes.Status404NotFound)                
+				.ProducesProblem(StatusCodes.Status404NotFound)
 				.WithMetadata(new SwaggerOperationAttribute(summary: "Gets all categories"));
 
 			group.MapPost("/createCategory", CreateCategory)
 				.WithName(nameof(CreateCategory))
 				.Produces(StatusCodes.Status200OK, contentType: "application/json")
-				.ProducesProblem(StatusCodes.Status404NotFound)                
+				.ProducesProblem(StatusCodes.Status404NotFound)
 				.WithMetadata(new SwaggerOperationAttribute(summary: "Creates a new category"));
 
 			group.MapPost("/editCategory/{categoryId:int}", EditCategory)
 				.WithName(nameof(EditCategory))
 				.Produces(StatusCodes.Status200OK, contentType: "application/json")
-				.ProducesProblem(StatusCodes.Status404NotFound)                
+				.ProducesProblem(StatusCodes.Status404NotFound)
 				.WithMetadata(new SwaggerOperationAttribute(summary: "Edits an existing category"));
 
 			group.MapPost("/deleteCategory/{categoryId:int}", DeleteCategory)
 				.WithName(nameof(DeleteCategory))
 				.Produces(StatusCodes.Status200OK, contentType: "application/json")
-				.ProducesProblem(StatusCodes.Status404NotFound)                
+				.ProducesProblem(StatusCodes.Status404NotFound)
 				.WithMetadata(new SwaggerOperationAttribute(summary: "Removes an existing category"));
 
 			return group;

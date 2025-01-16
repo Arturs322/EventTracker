@@ -47,9 +47,9 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEventService, EventService>();
-//builder.Services.AddScoped<ICategoryService, CategoryService>();
-//builder.Services.AddScoped<ICountryService, CountryService>();
-//builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
@@ -59,6 +59,9 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.MapEventEndpoints();
+app.MapCategoryEndpoints();
+app.MapCompanyEndpoints();
+app.MapCountryEndpoints();
 
 if (app.Environment.IsDevelopment())
 {

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EventTracker.Application.Dto;
 using EventTracker.Models;
 
 namespace EventTracker.Infrastructure
@@ -9,6 +8,9 @@ namespace EventTracker.Infrastructure
 		public AutoMapperProfile()
 		{
 			CreateMap<Event, EventDto>().ReverseMap();
+			CreateMap<Category, CategoryDto>().ReverseMap();
+			CreateMap<Company, CompanyDto>().ReverseMap();
+			CreateMap<Country, CountryDto>().ReverseMap();
 		}
 	}
 }
